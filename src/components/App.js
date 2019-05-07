@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-
 import "../App.css";
 import Compliment from './Compliment'
+import UrlForm from './Form'
 
 const COMP_URL = "http://localhost:3002/api/v1/compliments";
 
@@ -9,7 +9,7 @@ const COMP_URL = "http://localhost:3002/api/v1/compliments";
 class App extends Component {
   state = {
     currentCompliment: "",
-    currentUrl:""
+    imgUrl:""
   };
 
   componentDidMount() {
@@ -27,7 +27,7 @@ class App extends Component {
     <div className="App">
       <h1>Compliments here:</h1>
       <Compliment currentCompliment={this.state.currentCompliment}/>
-      {/* <Form currentUrl={this.state.currentUrl}/> */}
+      <UrlForm imgUrl={this.state.imgUrl}/>
     </div>
   );
   }
