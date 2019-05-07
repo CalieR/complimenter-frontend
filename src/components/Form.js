@@ -6,6 +6,8 @@ class UrlForm extends Component {
     imgUrl: ""
   };
 
+
+
   handleChange = event => {
     // debugger
     this.setState({
@@ -14,7 +16,6 @@ class UrlForm extends Component {
   };
 
   handleSubmit = e => {
-      debugger
     e.preventDefault();
     fetch("http://localhost:3002/api/v1/images", {
       method: "POST",
@@ -26,7 +27,10 @@ class UrlForm extends Component {
         url: this.state.imgUrl,
         user_id: 1
       })
-    }).then(resp => resp.json());
+    }).then(resp => resp.json())
+    .then(image => this.props.showImage(image))
+    .catch(error => console.error(error))
+    this.setState({imgUrl:''});
   };
 
   render() {
