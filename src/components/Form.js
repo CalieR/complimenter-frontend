@@ -31,6 +31,7 @@ class UrlForm extends Component {
     .then(image => this.props.showImage(image))
     .catch(error => console.error(error))
     this.setState({imgUrl:''});
+    this.props.getPictureColour()
   };
 
   render() {

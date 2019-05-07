@@ -5,11 +5,15 @@ import UrlForm from "./Form";
 import Picture from "./Picture"
 
 const COMP_URL = "http://localhost:3002/api/v1/compliments";
+const COLOURS_URL = "http://localhost:3002/api/v1/compliments/colour"
+
 
 class App extends Component {
   state = {
     currentCompliment: "",
-    currentImage: null
+    currentImage: null,
+    currentColour: ""
+
   };
 
   componentDidMount() {
@@ -18,6 +22,16 @@ class App extends Component {
       .then(json =>
         this.setState({
           currentCompliment: json.content
+        })
+      );
+  }
+
+  getPictureColour = () =>{
+     fetch(COLOURS_URL)
+      .then(resp => resp.json())
+      .then(json =>
+        this.setState({
+          currentColour: json.colour
         })
       );
   }
@@ -31,9 +45,9 @@ this.setState({
   render() {
     return (
       <div className="App">
-        <h1>Compliments here:</h1>
-        <Compliment currentCompliment={this.state.currentCompliment} />
-        <UrlForm showImage={this.showImage}/>
+        <h1>Compliment:</h1>
+        <Compliment currentColour={this.state.currentColour}currentCompliment={this.state.currentCompliment} />
+        <UrlForm getPictureColour={this.getPictureColour} showImage={this.showImage}/>
         <Picture currentImage={this.state.currentImage}/>
       </div>
     );
