@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import "../App.css";
 import Compliment from "./Compliment";
 import UrlForm from "./Form";
+import NavBar from "./NavBar";
+import Button from "./Button";
 import Picture from "./Picture";
+import Jonathan from "./Jonathan";
+import { Route } from "react-router-dom";
 
 const COLOURS_URL = "http://localhost:3002/api/v1/compliments/colour";
 
@@ -31,6 +35,12 @@ class App extends Component {
     });
   };
 
+  resetCurrentImageState = () => {
+    this.setState({
+      currentImage: null
+    });
+  };
+
   showImage = img => {
     this.setState({
       currentImage: img.url
@@ -40,17 +50,39 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Enter a picture url and get a compliment, gurl!</h1>
-        <UrlForm
-          resetState={this.resetState}
-          getColourAndCompliment={this.getColourAndCompliment}
-          showImage={this.showImage}
+        <NavBar />
+        <Route
+          exact
+          path="/"
+          component={() => {
+            return (
+              <div>
+                <Jonathan />
+              </div>
+            );
+          }}
         />
-        <Compliment
-          currentColour={this.state.currentColour}
-          currentCompliment={this.state.currentCompliment}
-        />
-        <Picture currentImage={this.state.currentImage} />
+
+        {this.state.currentImage ? (
+          <>
+            <Compliment
+              currentColour={this.state.currentColour}
+              currentCompliment={this.state.currentCompliment}
+            />
+
+            <Picture currentImage={this.state.currentImage} />
+            <Button resetCurrentImageState={this.resetCurrentImageState} />
+          </>
+        ) : (
+          <>
+            <h1>Enter a picture url and get a compliment, gurl!</h1>
+            <UrlForm
+              resetState={this.resetState}
+              getColourAndCompliment={this.getColourAndCompliment}
+              showImage={this.showImage}
+            />
+          </>
+        )}
       </div>
     );
   }

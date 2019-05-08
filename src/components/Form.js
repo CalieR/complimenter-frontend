@@ -38,17 +38,19 @@ class UrlForm extends Component {
 
   render() {
     return (
-      <div>
-        <Form onSubmit={this.handleSubmit}>
+      <div className="ui form">
+        <Form className="ui form" onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Input
+              className="inline field"
+              label="image url"
               type="text"
               placeholder="Image Url"
               name="imgUrl"
               value={this.state.imgUrl}
               onChange={this.handleChange}
             />
-            <Form.Button content="Submit" />
+            <Form.Button className="fluid" content="Submit" />
           </Form.Group>
         </Form>
       </div>
