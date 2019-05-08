@@ -7,6 +7,7 @@ import Button from "./Button";
 import Picture from "./Picture";
 import Jonathan from "./Jonathan";
 import { Route } from "react-router-dom";
+import AllMyLooks from "./AllMyLooks";
 
 const COLOURS_URL = "http://localhost:3002/api/v1/compliments/colour";
 
@@ -58,31 +59,37 @@ class App extends Component {
             return (
               <div>
                 <Jonathan />
+                {this.state.currentImage ? (
+                  <>
+                    <Compliment
+                      currentColour={this.state.currentColour}
+                      currentCompliment={this.state.currentCompliment}
+                    />
+
+                    <Picture currentImage={this.state.currentImage} />
+                    <Button
+                      resetCurrentImageState={this.resetCurrentImageState}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <h1>Enter a picture url and get a compliment, gurl!</h1>
+                    <UrlForm
+                      resetState={this.resetState}
+                      getColourAndCompliment={this.getColourAndCompliment}
+                      showImage={this.showImage}
+                    />
+                  </>
+                )}
               </div>
             );
           }}
         />
-
-        {this.state.currentImage ? (
-          <>
-            <Compliment
-              currentColour={this.state.currentColour}
-              currentCompliment={this.state.currentCompliment}
-            />
-
-            <Picture currentImage={this.state.currentImage} />
-            <Button resetCurrentImageState={this.resetCurrentImageState} />
-          </>
-        ) : (
-          <>
-            <h1>Enter a picture url and get a compliment, gurl!</h1>
-            <UrlForm
-              resetState={this.resetState}
-              getColourAndCompliment={this.getColourAndCompliment}
-              showImage={this.showImage}
-            />
-          </>
-        )}
+        <Route
+          exact
+          path="/allmylooks"
+          component={AllMyLooks}
+        />
       </div>
     );
   }
