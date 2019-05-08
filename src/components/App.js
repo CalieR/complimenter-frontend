@@ -2,53 +2,55 @@ import React, { Component } from "react";
 import "../App.css";
 import Compliment from "./Compliment";
 import UrlForm from "./Form";
-import Picture from "./Picture"
+import Picture from "./Picture";
 
-const COMP_URL = "http://localhost:3002/api/v1/compliments";
-const COLOURS_URL = "http://localhost:3002/api/v1/compliments/colour"
-
+const COLOURS_URL = "http://localhost:3002/api/v1/compliments/colour";
 
 class App extends Component {
   state = {
     currentCompliment: "",
     currentImage: null,
     currentColour: ""
-
   };
 
-  componentDidMount() {
-    return fetch(COMP_URL)
+  getColourAndCompliment = () => {
+    fetch(COLOURS_URL)
       .then(resp => resp.json())
       .then(json =>
         this.setState({
+          currentColour: json.colour,
           currentCompliment: json.content
         })
       );
-  }
+  };
 
-  getPictureColour = () =>{
-     fetch(COLOURS_URL)
-      .then(resp => resp.json())
-      .then(json =>
-        this.setState({
-          currentColour: json.colour
-        })
-      );
-  }
+  resetState = () => {
+    this.setState({
+      currentCompliment: "",
+      currentColour: ""
+    });
+  };
 
-  showImage = img =>{
-this.setState({
-  currentImage: img.url
-})
-  }
+  showImage = img => {
+    this.setState({
+      currentImage: img.url
+    });
+  };
 
   render() {
     return (
       <div className="App">
-        <h1>Compliment:</h1>
-        <Compliment currentColour={this.state.currentColour}currentCompliment={this.state.currentCompliment} />
-        <UrlForm getPictureColour={this.getPictureColour} showImage={this.showImage}/>
-        <Picture currentImage={this.state.currentImage}/>
+        <h1>Enter a picture url and get a compliment, gurl!</h1>
+        <UrlForm
+          resetState={this.resetState}
+          getColourAndCompliment={this.getColourAndCompliment}
+          showImage={this.showImage}
+        />
+        <Compliment
+          currentColour={this.state.currentColour}
+          currentCompliment={this.state.currentCompliment}
+        />
+        <Picture currentImage={this.state.currentImage} />
       </div>
     );
   }

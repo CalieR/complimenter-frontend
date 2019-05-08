@@ -6,8 +6,6 @@ class UrlForm extends Component {
     imgUrl: ""
   };
 
-
-
   handleChange = event => {
     // debugger
     this.setState({
@@ -27,11 +25,15 @@ class UrlForm extends Component {
         url: this.state.imgUrl,
         user_id: 1
       })
-    }).then(resp => resp.json())
-    .then(image => this.props.showImage(image))
-    .catch(error => console.error(error))
-    this.setState({imgUrl:''});
-    this.props.getPictureColour()
+    })
+      .then(resp => resp.json())
+      .then(image => this.props.showImage(image))
+      .then(() => {
+        this.props.getColourAndCompliment();
+        this.props.resetState();
+      })
+      .catch(error => console.error(error));
+    this.setState({ imgUrl: "" });
   };
 
   render() {
