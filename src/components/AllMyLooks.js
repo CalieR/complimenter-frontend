@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import LookCard from './LookCard';
 
 class AllMyLooks extends Component {
     state = {  }
     render() { 
         return ( 
-            <h1>Looks go here:</h1>
+            <div className="ui four column grid">
+                {this.props.allMyLooks.map(look => <LookCard look={look}/>)}
+            </div>
          );
     }
 }

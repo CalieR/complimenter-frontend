@@ -10,12 +10,14 @@ import { Route } from "react-router-dom";
 import AllMyLooks from "./AllMyLooks";
 
 const COLOURS_URL = "http://localhost:3002/api/v1/compliments/colour";
+const IMAGES_URL = "http://localhost:3002/api/v1/images"
 
 class App extends Component {
   state = {
     currentCompliment: "",
     currentImage: null,
-    currentColour: ""
+    currentColour: "",
+    allMyLooks: []
   };
 
   getColourAndCompliment = () => {
@@ -28,6 +30,16 @@ class App extends Component {
         })
       );
   };
+
+  componentDidMount = () => {
+    return fetch(IMAGES_URL)
+      .then(resp => resp.json())
+      .then(json =>
+        this.setState({
+          allMyLooks: json
+        })
+      );
+  }
 
   resetState = () => {
     this.setState({
@@ -88,7 +100,7 @@ class App extends Component {
         <Route
           exact
           path="/allmylooks"
-          component={AllMyLooks}
+          render={() => <AllMyLooks allMyLooks={this.state.allMyLooks}/>}
         />
       </div>
     );
