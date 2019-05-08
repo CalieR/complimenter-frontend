@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form } from "semantic-ui-react";
+import { Form, Label } from "semantic-ui-react";
 
 class UrlForm extends Component {
   state = {
@@ -40,10 +40,11 @@ class UrlForm extends Component {
     return (
       <div className="ui form">
         <Form className="ui form" onSubmit={this.handleSubmit}>
-          <Form.Group>
+            <Label size="massive" pointing="below"  >Enter a picture url and get a compliment, gurl!</Label>
+      
             <Form.Input
-              className="inline field"
-              label="image url"
+              className="field"
+              
               type="text"
               placeholder="Image Url"
               name="imgUrl"
@@ -51,7 +52,7 @@ class UrlForm extends Component {
               onChange={this.handleChange}
             />
             <Form.Button className="fluid" content="Submit" />
-          </Form.Group>
+         
         </Form>
       </div>
     );

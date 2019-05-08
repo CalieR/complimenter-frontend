@@ -3,7 +3,6 @@ import "../App.css";
 import Compliment from "./Compliment";
 import UrlForm from "./Form";
 import NavBar from "./NavBar";
-import Button from "./Button";
 import Picture from "./Picture";
 import Jonathan from "./Jonathan";
 import { Route } from "react-router-dom";
@@ -31,7 +30,7 @@ class App extends Component {
       );
   };
 
-  componentDidMount = () => {
+  componentDidMount = () =>{
     return fetch(IMAGES_URL)
       .then(resp => resp.json())
       .then(json =>
@@ -69,7 +68,7 @@ class App extends Component {
           path="/"
           component={() => {
             return (
-              <div>
+              <div className="jvn-container">
                 <Jonathan />
                 {this.state.currentImage ? (
                   <>
@@ -78,14 +77,11 @@ class App extends Component {
                       currentCompliment={this.state.currentCompliment}
                     />
 
-                    <Picture currentImage={this.state.currentImage} />
-                    <Button
-                      resetCurrentImageState={this.resetCurrentImageState}
-                    />
+                    <Picture currentImage={this.state.currentImage} resetCurrentImageState= {this.resetCurrentImageState}/>
+                  
                   </>
                 ) : (
                   <>
-                    <h1>Enter a picture url and get a compliment, gurl!</h1>
                     <UrlForm
                       resetState={this.resetState}
                       getColourAndCompliment={this.getColourAndCompliment}
@@ -93,6 +89,7 @@ class App extends Component {
                     />
                   </>
                 )}
+              
               </div>
             );
           }}
@@ -103,6 +100,7 @@ class App extends Component {
           render={() => <AllMyLooks allMyLooks={this.state.allMyLooks}/>}
         />
       </div>
+    
     );
   }
 }

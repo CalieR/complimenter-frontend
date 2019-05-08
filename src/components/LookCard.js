@@ -1,11 +1,11 @@
 import React from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Image } from 'semantic-ui-react'
 
 const LookCard = (props) => (
     <Card>
       <Image src={props.look.url} wrapped ui={false} />
       <Card.Content>
-          
+
       </Card.Content>
     </Card>
   )
