@@ -5,7 +5,7 @@ class Compliment extends Component {
     return (
       <div >
       <Label id="compliment-message"size="massive" pointing='left'>
-        {this.props.currentColour} looks so great on you!<br/>
+        {this.props.currentColour}<br/>
         {this.props.currentCompliment}</Label>
       </div>
     );

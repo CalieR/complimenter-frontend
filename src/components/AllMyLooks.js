@@ -6,7 +6,7 @@ class AllMyLooks extends Component {
     render() { 
         return ( 
             <div className="ui four column grid">
-                {this.props.allMyLooks.map(look => <LookCard look={look}/>)}
+                {this.props.allMyLooks.map(look => <LookCard key={look.id} handleDelete={this.props.handleDelete} look={look}/>)}
             </div>
          );
     }

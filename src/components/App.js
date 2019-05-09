@@ -9,7 +9,8 @@ import { Route } from "react-router-dom";
 import AllMyLooks from "./AllMyLooks";
 
 const COLOURS_URL = "http://localhost:3002/api/v1/compliments/colour";
-const IMAGE_COMPLIMENTS_URL = "http://localhost:3002/api/v1/image_compliments"
+const IMAGE_COMPLIMENTS_URL = "http://localhost:3002/api/v1/image_compliments";
+const DELETE_URL = "http://localhost:3002/api/v1/image_compliments/";
 
 class App extends Component {
   state = {
@@ -22,15 +23,16 @@ class App extends Component {
   getColourAndCompliment = () => {
     fetch(COLOURS_URL)
       .then(resp => resp.json())
-      .then(json =>
+      .then(jso =>
         this.setState({
-          currentColour: json.colour,
-          currentCompliment: json.content
+          currentColour: jso.colour,
+          currentCompliment: jso.compliment.content,
+          allMyLooks: [jso, ...this.state.allMyLooks]
         })
       );
   };
 
-  componentDidMount = () =>{
+  componentDidMount = () => {
     return fetch(IMAGE_COMPLIMENTS_URL)
       .then(resp => resp.json())
       .then(json =>
@@ -38,7 +40,7 @@ class App extends Component {
           allMyLooks: json
         })
       );
-  }
+  };
 
   resetState = () => {
     this.setState({
@@ -59,6 +61,13 @@ class App extends Component {
     });
   };
 
+  handleDelete = (id) => {
+    return fetch(DELETE_URL + `${id}`, { method: 'DELETE' })
+    .then(this.setState({
+      allMyLooks: this.state.allMyLooks.filter(look => look.id !== id)
+    }))
+  };
+
   render() {
     return (
       <div className="App">
@@ -77,8 +86,10 @@ class App extends Component {
                       currentCompliment={this.state.currentCompliment}
                     />
 
-                    <Picture currentImage={this.state.currentImage} resetCurrentImageState= {this.resetCurrentImageState}/>
-                  
+                    <Picture
+                      currentImage={this.state.currentImage}
+                      resetCurrentImageState={this.resetCurrentImageState}
+                    />
                   </>
                 ) : (
                   <>
@@ -89,7 +100,6 @@ class App extends Component {
                     />
                   </>
                 )}
-              
               </div>
             );
           }}
@@ -97,10 +107,14 @@ class App extends Component {
         <Route
           exact
           path="/allmylooks"
-          render={() => <AllMyLooks allMyLooks={this.state.allMyLooks}/>}
+          render={() => (
+            <AllMyLooks
+              handleDelete={this.handleDelete}
+              allMyLooks={this.state.allMyLooks}
+            />
+          )}
         />
       </div>
-    
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image } from 'semantic-ui-react'
+import { Card, Image, Button } from 'semantic-ui-react'
 
 const LookCard = (props) => (
     <Card>
@@ -12,6 +12,7 @@ const LookCard = (props) => (
             {props.look.compliment.content}
           </Card.Description> 
       </Card.Content>
+      <Button onClick={() => props.handleDelete(props.look.id)}>Delete</Button>
     </Card>
   )
   
