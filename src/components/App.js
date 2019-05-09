@@ -9,7 +9,7 @@ import { Route } from "react-router-dom";
 import AllMyLooks from "./AllMyLooks";
 
 const COLOURS_URL = "http://localhost:3002/api/v1/compliments/colour";
-const IMAGES_URL = "http://localhost:3002/api/v1/images"
+const IMAGE_COMPLIMENTS_URL = "http://localhost:3002/api/v1/image_compliments"
 
 class App extends Component {
   state = {
@@ -31,7 +31,7 @@ class App extends Component {
   };
 
   componentDidMount = () =>{
-    return fetch(IMAGES_URL)
+    return fetch(IMAGE_COMPLIMENTS_URL)
       .then(resp => resp.json())
       .then(json =>
         this.setState({
