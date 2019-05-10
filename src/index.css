@@ -12,3 +12,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+.pictures {
+  max-height:350px;
+  overflow: hidden;
+}
+
+/* quick fix!  need to go into the semantic stylesheets to change this properly*/
+.ui.card {
+  margin: 0em 0 !important;
+  margin-bottom:10px !important;
+}

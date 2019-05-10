@@ -3,7 +3,7 @@ import { Card, Image, Button } from 'semantic-ui-react'
 
 const LookCard = (props) => (
     <Card>
-      <Image size="medium" centered src={props.look.image.url} wrapped ui={false} />
+      <Image className='pictures' size="medium" centered src={props.look.image.url} wrapped ui={false} />
       <Card.Content>
         <Card.Header>
             {props.look.colour}
