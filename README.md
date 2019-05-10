@@ -1,7 +1,7 @@
 ## Complimenter
 Have you ever wanted your own cheerleader to shower you with positivity and compliments like Jonathan Van Ness from Queer Eye?
 
-![JonathanVanNess](https://media.giphy.com/media/KAkkxmIwm5IKVElNnI/giphy.mp4)
+![JonathanVanNess](https://media.giphy.com/media/KAkkxmIwm5IKVElNnI/giphy.gif)
 
 
 https://vimeo.com/user35954349/review/335362817/b2f7b8b3b4
