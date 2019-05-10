@@ -9,6 +9,7 @@ import { Route } from "react-router-dom";
 import AllMyLooks from "./AllMyLooks";
 
 const COLOURS_URL = "http://localhost:3002/api/v1/compliments/colour";
+const TAGS_URL = "http://localhost:3002/api/v1/compliments/tags"
 const IMAGE_COMPLIMENTS_URL = "http://localhost:3002/api/v1/image_compliments";
 const DELETE_URL = "http://localhost:3002/api/v1/image_compliments/";
 
@@ -17,6 +18,7 @@ class App extends Component {
     currentCompliment: "",
     currentImage: null,
     currentColour: "",
+    featureTags:"",
     allMyLooks: []
   };
 
@@ -28,6 +30,21 @@ class App extends Component {
           currentColour: jso.colour,
           currentCompliment: jso.compliment.content,
           allMyLooks: [jso, ...this.state.allMyLooks]
+        })
+      );
+  };
+
+  randomTagSelect = () => {
+   const num = Math.floor(Math.random() * 11)
+   num % 2 === 0 ? this.getColourAndCompliment() : this.getTagsAndCompliment()
+  }
+
+  getTagsAndCompliment = () => {
+    return fetch(TAGS_URL)
+      .then(resp => resp.json())
+      .then(jso =>
+        this.setState({
+          featureTags: jso.tag
         })
       );
   };
@@ -45,7 +62,8 @@ class App extends Component {
   resetState = () => {
     this.setState({
       currentCompliment: "",
-      currentColour: ""
+      currentColour: "",
+      featureTags: ""
     });
   };
 
@@ -82,6 +100,7 @@ class App extends Component {
                 {this.state.currentImage ? (
                   <>
                     <Compliment
+                    featureTags={this.state.featureTags}
                       currentColour={this.state.currentColour}
                       currentCompliment={this.state.currentCompliment}
                     />
@@ -95,7 +114,9 @@ class App extends Component {
                   <>
                     <UrlForm
                       resetState={this.resetState}
+                      randomTagSelect={this.randomTagSelect}
                       getColourAndCompliment={this.getColourAndCompliment}
+                      getTagsAndCompliment={this.getTagsAndCompliment}
                       showImage={this.showImage}
                     />
                   </>
