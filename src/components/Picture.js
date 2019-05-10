@@ -8,7 +8,7 @@ class Picture extends Component {
     return (
       <>
         <div className="picture-container">
-          <Image size='large'className="picdiv" src={this.props.currentImage} alt="" />
+          <Image size='medium'className="picdiv" src={this.props.currentImage} alt="" />
           <Button className="button-container" resetCurrentImageState={this.props.resetCurrentImageState} />
         </div>
       </>

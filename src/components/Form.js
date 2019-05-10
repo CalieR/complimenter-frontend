@@ -29,7 +29,7 @@ class UrlForm extends Component {
       .then(resp => resp.json())
       .then(image => this.props.showImage(image))
       .then(() => {
-        this.props.getColourAndCompliment();
+        this.props.randomTagSelect()
         this.props.resetState();
       })
       .catch(error => console.error(error));
