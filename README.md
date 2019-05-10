@@ -1,4 +1,18 @@
+## Complimenter
+Have you ever wanted your own cheerleader to shower you with positivity and compliments like Jonathan Van Ness from Queer Eye?
+
+![JonathanVanNess](https://media.giphy.com/media/Id077wsI7UuLiOTI3b/giphy.gif)
+
+
+https://vimeo.com/user35954349/review/335362817/b2f7b8b3b4
+
+With Complimenter, you can upload your look of the day and recieve a positive compliment about your style, Henny!
+
+## HOW TO USE
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+For the backend of this project, go to https://github.com/schazbot/complimenter-backend
+
+
 
 ## Available Scripts
 
