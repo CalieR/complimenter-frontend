@@ -8,10 +8,10 @@ import Jonathan from "./Jonathan";
 import { Route } from "react-router-dom";
 import AllMyLooks from "./AllMyLooks";
 
-const COLOURS_URL = "http://localhost:3002/api/v1/compliments/colour";
-const TAGS_URL = "http://localhost:3002/api/v1/compliments/tags"
-const IMAGE_COMPLIMENTS_URL = "http://localhost:3002/api/v1/image_compliments";
-const DELETE_URL = "http://localhost:3002/api/v1/image_compliments/";
+const COLOURS_URL = "https://complimenter-jvn.herokuapp.com/api/v1/compliments/colour";
+const TAGS_URL = "https://complimenter-jvn.herokuapp.com/api/v1/compliments/tags"
+const IMAGE_COMPLIMENTS_URL = "https://complimenter-jvn.herokuapp.com/api/v1/image_compliments";
+const DELETE_URL = "https://complimenter-jvn.herokuapp.com/api/v1/image_compliments/";
 
 class App extends Component {
   state = {
@@ -95,6 +95,7 @@ class App extends Component {
           path="/"
           component={() => {
             return (
+
               <div className="jvn-container">
                 <Jonathan />
                 {this.state.currentImage ? (
@@ -122,6 +123,8 @@ class App extends Component {
                   </>
                 )}
               </div>
+
+              
             );
           }}
         />

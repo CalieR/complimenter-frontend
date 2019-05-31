@@ -15,7 +15,7 @@ class UrlForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    fetch("http://localhost:3002/api/v1/images", {
+    fetch("https://complimenter-jvn.herokuapp.com/api/v1/images", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
