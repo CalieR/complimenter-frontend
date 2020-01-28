@@ -31,6 +31,11 @@ then
 To run the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+
+##Inclusivity
+Is this app easy for you to use?  Is there anything that we could add that would make it easier/more enjoyable for you?
+Please message us or raise an issue to help us make a more inclusive app.
+
 ## Authors 
 **Charlotte Pearce** [GitHub](https://github.com/schazbot)
 ##
